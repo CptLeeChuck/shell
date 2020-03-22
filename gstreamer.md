@@ -57,9 +57,14 @@ a=rtpmap:96 H264/90000
 2. Open VLC Setting
 3. Show All 🇩🇪Alle einblenden
 4. Input / Codecs 🇩🇪Eingang/Codecs
-5. Adjust cache settings to avoid delay (optional) 
-  * Default value "File caching (ms)"  *300* (🇩🇪"Datei-Cachewert (ms)")
-  * Default value "Live capture caching (ms)" "Datei-Cachewert (ms)" *300* (🇩🇪"Cachewert für Liveaufnahmen (ms)")
-  * Default value "Disc caching (ms)" *300* (🇩🇪"Disk-Cachewert (ms)")
-  * Default value "Network caching (ms)" *1000* (🇩🇪"Cachewert für das Netzwerk (ms)")
+5. Adjust cache settings to avoid delay (optional)
+
+| en                         | de                                 | Default  | Adjusted  |
+| -------------------------- | ---------------------------------- | -------- | --------- |
+| File caching (ms)          | Datei-Cachewert (ms)               | 300      | 0         |
+| Live capture caching (ms)  | Cachewert für Liveaufnahmen (ms)   | 300      | 0         |
+| Disc caching (ms)          | Disk-Cachewert (ms)                | 300      | 0         |
+| Network caching (ms)       | Cachewert für das Netzwerk (ms)    | 1000     | 0         |
+
+
 6. Open SDP file in VLC
