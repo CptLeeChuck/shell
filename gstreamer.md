@@ -39,7 +39,12 @@ gst-launch-1.0 -v autovideosrc device=/dev/video0 ! video/x-raw ! x264enc ! rtph
 gst-launch-1.0 -v autovideosrc device=/dev/video0 ! video/x-raw ! x264enc tune=zerolatency bitrate=500 speed-preset=ultrafast ! rtph264pay ! udpsink host=127.0.0.1 port=5000 
 
 # Higher quality (±1MBit stream)
-gst-launch-1.0 -v autovideosrc device=/dev/video0 ! video/x-raw ! x264enc tune=zerolatency bitrate=10000 speed-preset=ultrafast ! rtph264pay ! udpsink host=127.0.0.1 port=5000 
+gst-launch-1.0 -v autovideosrc device=/dev/video0 ! video/x-raw ! x264enc tune=zerolatency bitrate=10000 speed-preset=ultrafast ! rtph264pay ! udpsink host=127.0.0.1 port=5000
+
+# Audio send and receive
+gst-launch-1.0 -v audiotestsrc freq=500 ! audioconvert ! audio/x-raw,channels=1,depth=16,width=16,rate=44100 ! rtpL16pay ! udpsink host=127.0.0.1 port=5000
+gst-launch-1.0 -v udpsrc port=5000 ! "application/x-rtp,media=(string)audio, clock-rate=(int)44100, width=16, height=16, encoding-name=(string)L16, encoding-params=(string)1, channels=(int)1, channel-positions=(int)1, payload=(int)96" ! rtpL16depay ! audioconvert ! autoaudiosink
+
 ```
 
 
