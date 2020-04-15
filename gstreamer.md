@@ -32,14 +32,14 @@ gst-launch-1.0 -v videotestsrc ! video/x-raw,width=1280,height=720 ! x264enc ! r
 # Adjust frames per second to be sent
 gst-launch-1.0 -v videotestsrc ! video/x-raw,width=1280,height=720,framerate=3/1 ! x264enc ! rtph264pay ! udpsink host=127.0.0.1 port=5000
 
-# Send data from local webcam
-gst-launch-1.0 -v autovideosrc device=/dev/video0 ! video/x-raw ! x264enc ! rtph264pay ! udpsink host=127.0.0.1 port=5000 
+# Send data from local webcam (first webcam in system = 0)
+gst-launch-1.0 -v avfvideosrc device-index=0 ! video/x-raw ! x264enc ! rtph264pay ! udpsink host=127.0.0.1 port=5000 
 
 # Reduce latency were possible
-gst-launch-1.0 -v autovideosrc device=/dev/video0 ! video/x-raw ! x264enc tune=zerolatency bitrate=500 speed-preset=ultrafast ! rtph264pay ! udpsink host=127.0.0.1 port=5000 
+gst-launch-1.0 -v avfvideosrc device-index=0 ! video/x-raw ! x264enc tune=zerolatency bitrate=500 speed-preset=ultrafast ! rtph264pay ! udpsink host=127.0.0.1 port=5000 
 
 # Higher quality (±1MBit stream)
-gst-launch-1.0 -v autovideosrc device=/dev/video0 ! video/x-raw ! x264enc tune=zerolatency bitrate=10000 speed-preset=ultrafast ! rtph264pay ! udpsink host=127.0.0.1 port=5000
+gst-launch-1.0 -v avfvideosrc device-index=0 ! video/x-raw ! x264enc tune=zerolatency bitrate=10000 speed-preset=ultrafast ! rtph264pay ! udpsink host=127.0.0.1 port=5000
 
 # Audio send and receive
 gst-launch-1.0 -v audiotestsrc freq=500 ! audioconvert ! audio/x-raw,channels=1,depth=16,width=16,rate=44100 ! rtpL16pay ! udpsink host=127.0.0.1 port=5000
