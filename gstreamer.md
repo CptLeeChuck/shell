@@ -32,7 +32,7 @@ gst-launch-1.0 -v videotestsrc ! video/x-raw,width=1280,height=720 ! x264enc ! r
 # Adjust frames per second to be sent
 gst-launch-1.0 -v videotestsrc ! video/x-raw,width=1280,height=720,framerate=3/1 ! x264enc ! rtph264pay ! udpsink host=127.0.0.1 port=5000
 
-# Send data from local webcam (first webcam in system = 0)
+# Send data from local webcam (first webcam in system = 0. List all devices with "gst-device-monitor-1.0")
 gst-launch-1.0 -v avfvideosrc device-index=0 ! video/x-raw ! x264enc ! rtph264pay ! udpsink host=127.0.0.1 port=5000 
 
 # Reduce latency were possible
