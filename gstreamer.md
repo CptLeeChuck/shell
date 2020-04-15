@@ -45,6 +45,10 @@ gst-launch-1.0 -v avfvideosrc device-index=0 ! video/x-raw ! x264enc tune=zerola
 gst-launch-1.0 -v audiotestsrc freq=500 ! audioconvert ! audio/x-raw,channels=1,depth=16,width=16,rate=44100 ! rtpL16pay ! udpsink host=127.0.0.1 port=5000
 gst-launch-1.0 -v udpsrc port=5000 ! "application/x-rtp,media=(string)audio, clock-rate=(int)44100, width=16, height=16, encoding-name=(string)L16, encoding-params=(string)1, channels=(int)1, channel-positions=(int)1, payload=(int)96" ! rtpL16depay ! audioconvert ! autoaudiosink
 
+# audio send and receive from connected USB microphone with OPUS codec
+gst-launch-1.0 osxaudiosrc device=43 ! audioconvert ! audioresample ! opusenc ! rtpopuspay ! udpsink host=127.0.0.1 port=5000
+gst-launch-1.0 udpsrc caps="application/x-rtp,media=(string)audio,clock-rate=(int)48000,encoding-name=(string)X-GST-OPUS-DRAFT-SPITTKA-00" port=5000 ! rtpopusdepay ! opusdec plc=true ! autoaudiosink
+
 ```
 
 
