@@ -69,6 +69,13 @@ m=video 5000 RTP/AVP 96
 c=IN IP4 127.0.0.1
 a=rtpmap:96 H264/90000
 ```
+or for audio (opus) only
+```
+v=0 
+m=audio 5000 RTP/AVP 96
+c=IN IP4 127.0.0.1 
+a=rtpmap:96 OPUS/48000
+
 
 2. Open VLC Setting
 3. Show All 🇩🇪Alle einblenden
