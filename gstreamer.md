@@ -14,6 +14,7 @@ brew install gst-plugins-bad
 brew install cask vlc
 
 ```
+I had to renistall ```brew install gst-plugins-good``` at the end again.
 
 ## Launch (send)
 
