@@ -54,7 +54,8 @@ gst-launch-1.0 udpsrc caps="application/x-rtp,media=(string)audio,clock-rate=(in
 # Receiver with jitter buffer
 gst-launch-1.0 udpsrc caps="application/x-rtp,media=(string)audio,clock-rate=(int)48000,encoding-name=(string)X-GST-OPUS-DRAFT-SPITTKA-00" port=5000 ! rtpjitterbuffer latency=200 ! rtpopusdepay ! opusdec plc=true ! autoaudiosink
 
-
+# Send video file to UDP
+gst-launch-1.0 -v filesrc location=/Volumes/temp/test.mp4 ! decodebin ! x264enc tune=zerolatency bitrate=10000 speed-preset=ultrafast ! rtph264pay ! udpsink host=127.0.0.1 port=5000
 
 
 ```
